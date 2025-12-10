@@ -1,0 +1,37 @@
+import mongoose, { Schema, model, models } from "mongoose";
+
+const UserSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Name is required"],
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: [true, "Email is required"],
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Email is invalid",
+      ],
+    },
+    password: {
+      type: String,
+      select: false,
+    },
+    image: {
+      type: String,
+    },
+    emailVerified: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const User = models.User || model("User", UserSchema);
+
+export default User;
