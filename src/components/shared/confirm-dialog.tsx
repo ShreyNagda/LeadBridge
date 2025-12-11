@@ -66,7 +66,7 @@ export default function ConfirmDialog({
                 : variant === "warning"
                 ? "bg-yellow-100 text-yellow-600"
                 : variant === "info"
-                ? "bg-blue-100 text-blue-600"
+                ? "bg-emerald-100 text-emerald-600"
                 : "bg-zinc-100 text-zinc-900"
             }`}
           >

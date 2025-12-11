@@ -19,7 +19,7 @@ export default function TerminalCode({
   return (
     <div
       className={cn(
-        "rounded-lg shadow-2xl overflow-hidden bg-gray-900 text-white!",
+        "rounded-lg shadow-2xl overflow-hidden bg-gray-900 text-white",
         className
       )}
     >
@@ -46,7 +46,7 @@ export default function TerminalCode({
         )}
       </div>
       <div className="p-6">
-        <pre className="font-mono text-white text-sm leading-relaxed whitespace-pre-wrap break-all">
+        <pre className="font-mono text-white/60! text-sm leading-relaxed whitespace-pre-wrap break-all">
           <code className={`language-${language}`}>{code}</code>
         </pre>
       </div>

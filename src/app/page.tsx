@@ -5,9 +5,12 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { Button } from "@/components/shared/button";
 
+import Features from "@/components/landing/features";
+import CTA from "@/components/landing/cta";
+
 export default function Home() {
   const code = `const response = await fetch("${
-    process.env.NEXTAUTH_URL || "https://api.formbridge.com"
+    process.env.NEXTAUTH_URL || "https://api.staticsend.com"
   }/v1/submit/form_123", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
@@ -31,14 +34,18 @@ export default function Home() {
               </div>
 
               <h1 className="text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
-                Collect Leads from
+                The missing backend for
                 <br />
-                your <span className="italic text-muted">Static Site</span>
+                your <span className="italic text-gray-500">Static Forms</span>
               </h1>
 
-              <p className="text-lg mb-8 leading-relaxed max-w-xl">
+              <p className="text-lg font-medium text-gray-900 mb-4">
+                For developers who want their site up and running in no time.
+              </p>
+
+              <p className="text-lg mb-8 leading-relaxed max-w-xl text-gray-600">
                 No backend required. Secure API endpoints for your forms. Get
-                submissions via email and view analytics in real-time.
+                submissions via email and view submissions in real-time.
               </p>
 
               <div className="flex flex-col md:flex-row  items-center gap-4 mb-8">
@@ -51,7 +58,7 @@ export default function Home() {
                     <ArrowRight size={16} />
                   </Button>
                 </Link>
-                <Link href="#docs">
+                <Link href="/docs">
                   <Button
                     variant="secondary"
                     className="inline-flex items-center gap-2 px-8 py-6"
@@ -78,6 +85,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <Features />
+        <CTA />
       </main>
       <Footer />
     </div>

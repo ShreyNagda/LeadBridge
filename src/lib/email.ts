@@ -20,7 +20,7 @@ export async function sendEmail({
   html: string;
 }) {
   const info = await transporter.sendMail({
-    from: process.env.EMAIL_FROM || '"FormBridge" <noreply@formbridge.com>',
+    from: process.env.EMAIL_FROM || '"StaticSend" <noreply@staticsend.com>',
     to,
     subject,
     html,

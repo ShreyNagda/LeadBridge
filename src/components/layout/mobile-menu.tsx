@@ -77,15 +77,9 @@ export default function MobileMenu({
                   >
                     Features
                   </Link>
+
                   <Link
-                    href="/#pricing"
-                    className="block px-4 py-3 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Pricing
-                  </Link>
-                  <Link
-                    href="/#docs"
+                    href="/docs"
                     className="block px-4 py-3 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
                     onClick={() => setIsOpen(false)}
                   >

@@ -27,14 +27,9 @@ export default async function Header({ hideNavLinks = false }: HeaderProps) {
               >
                 Features
               </Link>
+
               <Link
-                href="/#pricing"
-                className="text-sm hover:opacity-80 transition-opacity"
-              >
-                Pricing
-              </Link>
-              <Link
-                href="/#docs"
+                href="/docs"
                 className="text-sm hover:opacity-80 transition-opacity"
               >
                 Docs

@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <Logo iconSize={16} className="text-lg" />
         <p className="text-gray-500 text-sm">
-          &copy; {new Date().getFullYear()} FormBridge. All rights reserved.
+          &copy; {new Date().getFullYear()} StaticSend. All rights reserved.
         </p>
       </div>
     </footer>
