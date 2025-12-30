@@ -94,7 +94,7 @@ export default function FormSettings({ form }: FormSettingsProps) {
       toast.success("Form updated successfully");
       router.refresh();
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error(`Something went wrong - ${error}`);
     } finally {
       setIsLoading(false);
     }
@@ -121,7 +121,7 @@ export default function FormSettings({ form }: FormSettingsProps) {
       router.refresh();
       setShowDisableDialog(false);
     } catch (error) {
-      toast.error("Failed to update status");
+      toast.error(`Failed to update status - ${error}`);
     } finally {
       setIsToggling(false);
     }
@@ -143,7 +143,7 @@ export default function FormSettings({ form }: FormSettingsProps) {
       router.push("/dashboard");
       router.refresh();
     } catch (error) {
-      toast.error("Failed to delete form");
+      toast.error(`Failed to delete form ${error}`);
       setIsDeleting(false);
       setShowDeleteDialog(false);
     }
@@ -260,7 +260,7 @@ export default function FormSettings({ form }: FormSettingsProps) {
                 {...register("emailNotifications")}
                 className="sr-only peer"
               />
-              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-black/10 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black"></div>
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-black/10 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black"></div>
             </label>
           </div>
 

@@ -24,6 +24,12 @@ const FormSchema = new Schema(
         default: [],
       },
     },
+    allowedUrls: {
+      type: [String],
+      default: [],
+      description:
+        "Allowed origins for CORS. If empty, all origins are allowed.",
+    },
     isActive: {
       type: Boolean,
       default: true,

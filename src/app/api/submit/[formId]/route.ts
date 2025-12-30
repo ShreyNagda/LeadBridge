@@ -6,11 +6,30 @@ import User from "@/models/User";
 import { sendEmail } from "@/lib/email";
 import { rateLimit } from "@/lib/rate-limit";
 
-export async function OPTIONS() {
+export async function OPTIONS(
+  req: Request,
+  { params }: { params: Promise<{ formId: string }> }
+) {
+  const { formId } = await params;
+  let corsOrigin = "*";
+  try {
+    await connectDB();
+    const form = await Form.findById(formId);
+    const reqOrigin = req.headers.get("origin");
+    if (
+      form &&
+      Array.isArray(form.allowedUrls) &&
+      form.allowedUrls.length > 0
+    ) {
+      if (reqOrigin && form.allowedUrls.includes(reqOrigin)) {
+        corsOrigin = reqOrigin;
+      }
+    }
+  } catch {}
   return new NextResponse(null, {
     status: 204,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": corsOrigin,
       "Access-Control-Allow-Methods": "POST,OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
     },
@@ -43,6 +62,7 @@ export async function POST(
     );
   }
 
+  let corsOrigin = "*";
   try {
     const { formId } = await params;
 
@@ -70,6 +90,20 @@ export async function POST(
         { message: "Form not found or inactive" },
         { status: 404 }
       );
+    }
+
+    // Determine CORS origin
+    const reqOrigin = req.headers.get("origin");
+    if (Array.isArray(form.allowedUrls) && form.allowedUrls.length > 0) {
+      if (reqOrigin && form.allowedUrls.includes(reqOrigin)) {
+        corsOrigin = reqOrigin;
+      } else {
+        // Not allowed
+        return NextResponse.json(
+          { message: "Origin not allowed" },
+          { status: 403, headers: { "Access-Control-Allow-Origin": "*" } }
+        );
+      }
     }
 
     // Create submission
@@ -164,13 +198,14 @@ export async function POST(
 
     return NextResponse.json(
       { message: "Submission received successfully" },
-      { status: 200, headers: { "Access-Control-Allow-Origin": "*" } }
+      { status: 200, headers: { "Access-Control-Allow-Origin": corsOrigin } }
     );
   } catch (error) {
     console.error("Submission error:", error);
+    // fallback to '*' if corsOrigin is not set
     return NextResponse.json(
       { message: "Something went wrong" },
-      { status: 500, headers: { "Access-Control-Allow-Origin": "*" } }
+      { status: 500, headers: { "Access-Control-Allow-Origin": corsOrigin || "*" } }
     );
   }
 }

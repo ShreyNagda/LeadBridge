@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Inter,
-  Outfit,
-  Playfair_Display,
-  Space_Grotesk,
-} from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/providers/session-provider";
 import { ToastContainer } from "react-toastify";
@@ -18,15 +13,6 @@ import {
 } from "@/lib/constants";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-display",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space",
-});
 
 export const metadata: Metadata = {
   title: {
